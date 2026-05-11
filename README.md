@@ -36,6 +36,30 @@ hirakata-lp-test/
 
 Netlifyの公開URLを変更する場合は、`index.html` の `og:url` と `og:image`、`robots.txt`、`sitemap.xml` のURLも同じ公開URLに合わせて変更してください。
 
+
+## GitHubへアップロードする最終構成
+
+GitHubには、以下の構成のままアップロードしてください。括弧付きのダウンロード名や、ルート直下の画像ファイルは残さないでください。
+
+```txt
+index.html
+style.css
+script.js
+robots.txt
+sitemap.xml
+README.md
+images/
+  hero-photo.jpg
+  food-photo.jpg
+  tech-photo.jpg
+  owner-photo.jpg
+  cta-photo.jpg
+  logo-horizontal.png
+  logo-icon.png
+```
+
+NetlifyでGitHub連携する場合、ビルドコマンドは不要です。公開ディレクトリはリポジトリ直下を指定し、`index.html` がリポジトリ直下にある状態にします。
+
 ## GoogleフォームURLの設定場所
 
 メインCTA「無料で集客導線を相談する」は、Googleフォームに設定済みです。リンクは `script.js` の先頭で管理しています。
