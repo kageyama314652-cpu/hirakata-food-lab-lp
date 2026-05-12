@@ -190,3 +190,31 @@ faviconは `index.html` の以下で指定しています。
 - ヘッダーのナビゲーションが各セクションへ移動する
 - 画像を入れる場合、alt属性が設定されている
 - 表示確認をPC、タブレット、スマホ幅で行っている
+
+## 最低限のSEO内部対策
+
+今回、公開済みLPに対して以下の最低限のSEO内部対策を行っています。
+
+- `title` と `meta description` を、枚方周辺の飲食店集客向けに最適化
+- canonical URLを `https://hirakata-inshoku-lab.netlify.app/` に設定
+- OGPとTwitterカードを公開URLに合わせて設定
+- h1を1つに整理し、ページ上部に屋号「枚方飲食集客LAB」を自然に記載
+- 主要なh2を、飲食店集客・対応エリア・サービス内容が伝わる表現に調整
+- 画像alt属性を、内容と検索意図が自然に伝わる表現へ調整
+- `robots.txt` と `sitemap.xml` をNetlify公開URLに合わせて更新
+- ProfessionalServiceのJSON-LDを1つ追加
+- `noindex` / `nofollow` が入っていないことを確認
+
+狙うキーワード:
+
+- 枚方飲食集客LAB
+- 枚方 飲食店 集客
+- 枚方市 飲食店 集客
+- 枚方 飲食店 SNS運用
+- 枚方 Googleマップ 集客 飲食店
+
+GitHub更新後の確認:
+
+- NetlifyのDeploys画面で最新デプロイが `Published` になっていることを確認します。
+- Google Search Consoleで公開URLのURL検査を行い、インデックス登録をリクエストします。
+- Search Consoleのサイトマップから `https://hirakata-inshoku-lab.netlify.app/sitemap.xml` を送信します。

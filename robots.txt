@@ -1,3 +1,4 @@
 User-agent: *
 Allow: /
+
 Sitemap: https://hirakata-inshoku-lab.netlify.app/sitemap.xml
