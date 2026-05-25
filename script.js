@@ -1,11 +1,5 @@
-// メインCTAのリンク先です。本番のGoogleフォームURLを設定済みです。
-// primary: 「無料で集客導線を相談する」ボタンのリンク先です。
-//          GoogleフォームやLINE公式に変える場合は、このURLだけ差し替えます。
-// secondary: data-cta-secondary を使う場合の予備設定です。
-//            現在の「初回診断の内容を見る」は index.html で #plans に直接リンクしています。
 const CTA_LINKS = {
-  primary: "https://docs.google.com/forms/d/e/1FAIpQLSeF6iDq8pUbsbjHx9hHU5rHtEu4IAuaCSqkZSKJsNvo9KnTTw/viewform",
-  secondary: "#plans"
+  primary: "https://docs.google.com/forms/d/e/1FAIpQLSeF6iDq8pUbsbjHx9hHU5rHtEu4IAuaCSqkZSKJsNvo9KnTTw/viewform"
 };
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -13,22 +7,12 @@ document.addEventListener("DOMContentLoaded", () => {
   setupSmoothScroll();
   setupFaq();
   setupMobileNav();
+  setupReplacementImages();
 });
 
 function applyCtaLinks() {
   document.querySelectorAll("[data-cta]").forEach((link) => {
     link.setAttribute("href", CTA_LINKS.primary);
-    link.removeAttribute("target");
-    link.removeAttribute("rel");
-
-    link.addEventListener("click", (event) => {
-      event.preventDefault();
-      window.location.href = CTA_LINKS.primary;
-    });
-  });
-
-  document.querySelectorAll("[data-cta-secondary]").forEach((link) => {
-    link.setAttribute("href", CTA_LINKS.secondary);
   });
 }
 
@@ -42,13 +26,13 @@ function setupSmoothScroll() {
       }
 
       const target = document.querySelector(targetId);
+
       if (!target) {
         return;
       }
 
       event.preventDefault();
       closeMobileNav();
-
       target.scrollIntoView({
         behavior: "smooth",
         block: "start"
@@ -61,6 +45,11 @@ function setupFaq() {
   document.querySelectorAll(".faq-question").forEach((button) => {
     button.addEventListener("click", () => {
       const item = button.closest(".faq-item");
+
+      if (!item) {
+        return;
+      }
+
       const isOpen = item.classList.toggle("is-open");
       const icon = button.querySelector(".faq-icon");
 
@@ -87,6 +76,10 @@ function setupMobileNav() {
     toggle.setAttribute("aria-expanded", String(isOpen));
     toggle.setAttribute("aria-label", isOpen ? "メニューを閉じる" : "メニューを開く");
   });
+
+  nav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMobileNav);
+  });
 }
 
 function closeMobileNav() {
@@ -101,4 +94,21 @@ function closeMobileNav() {
   document.body.classList.remove("nav-open");
   toggle.setAttribute("aria-expanded", "false");
   toggle.setAttribute("aria-label", "メニューを開く");
+}
+
+function setupReplacementImages() {
+  document.querySelectorAll(".replaceable-image-slot img").forEach((image) => {
+    const showImage = () => {
+      if (image.naturalWidth > 1) {
+        image.closest(".sample-case")?.classList.add("has-replacement-image");
+      }
+    };
+
+    if (image.complete) {
+      showImage();
+      return;
+    }
+
+    image.addEventListener("load", showImage, { once: true });
+  });
 }
